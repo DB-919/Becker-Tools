@@ -1,0 +1,93 @@
+BECKER TOOLS V2.0 – iPHONE-WEBAPP (LPBF / WB / TIMER)
+=================================================
+
+INHALT
+  index.html          Haupt-App
+  extras.js           Parametervergleich, Bauplatte, Werkstoffe,
+                      Wärmebehandlung und Timer
+  manifest.webmanifest / icons/  iPhone-/PWA-Installation
+  sw.js               Offline-Cache für HTTPS-Veröffentlichung
+  beispiele/          zwei synthetische CSV-Messkurven zum Ausprobieren
+
+IPHONE-APP INSTALLIEREN
+1. Das ZIP entpacken und ALLE Dateien/Ordner (mit extras.js!) in das
+   GitHub-Pages-Repository oder auf einen anderen statischen HTTPS-Host laden.
+2. GitHub Pages für den Repository-Branch aktivieren. Danach die HTTPS-Adresse
+   in Safari auf dem iPhone öffnen.
+3. In Safari auf Teilen -> Zum Home-Bildschirm -> Hinzufügen tippen.
+4. Nach erstmaligem Laden und erfolgreicher Zwischenspeicherung funktioniert
+   die WebApp für viele Funktionen auch ohne Netzverbindung.
+5. Beim Update auf V2.0 alle bisherigen Dateien ersetzen/überschreiben,
+   vor allem index.html, sw.js, manifest.webmanifest und extras.js ergänzen.
+   Browser neu laden, ggf. PWA schließen und erneut öffnen.
+
+Eine OneDrive-Dateifreigabe ist kein geeigneter Ersatz für einen HTTPS-Webhost.
+Die Einzeldatei Becker_Tools_V2.0_Einzeldatei.html (separat bereitgestellt)
+läuft auch ohne extras.js für einen schnellen Test; die Installation als
+Home-Bildschirm-PWA benötigt weiterhin die vollständigen gehosteten Dateien.
+
+FUNKTIONEN ADDITIVE FERTIGUNG
+- Laser: Energiedichte, Linien-/Flächenenergie, theoretischer Volumenstrom,
+  Ziel-Energiedichte (Leistung oder Geschwindigkeit rückwärts berechnen).
+- Bauzeit: Volumen, Supports, Scanwirkungsgrad, Beschichtung und Nebenzeit.
+- Kosten: Pulver, Maschine, Rüsten, Nacharbeit, Zuschlag.
+- Vergleich: bis zu vier Parametersätze mit Kennwerttabelle und Diagramm;
+  rechnerische Soll-Energiedichte -> Geschwindigkeit und Volumenstrom.
+- Bauplatte: rechteckige Teile im Raster mit Rand- und Stückabständen,
+  automatische Auswahl zwischen 0° und 90°; Übernahme in Bauzeit.
+- Material: Gewicht, Pulverbedarf, eigene Materialdatenbank, CSV-Export.
+- Profile: Parameterprofile, CSV, PDF über Drucken, JSON-Vollbackup.
+
+WÄRMEBEHANDLUNG – MOBILVERSION
+- Projekte: beliebige Namen; zwei getrennte Teilprozesse pro Projekt:
+  Lösungsglühen (1 bis 3 Stufen) und Warmauslagerung (1 Stufe).
+- Messdaten CSV / TXT / TSV: erste Spalte Zeit, weitere Spalten Temperaturen.
+  Zeitangaben numerisch (Sekunden / Minuten / Stunden), HH:MM:SS oder
+  deutsches Datum plus Uhrzeit in getrennten ersten zwei Spalten.
+  Dezimalpunkt oder -komma, Semikolon, Komma oder Tabulator als Trenner.
+- Bis zu 12 Temperaturkanäle je Messdatei, mehrere Kanäle im Diagramm;
+  Bewertung über ausgewählten Kanal; X-Achse Minuten/Stunden; Diagrammstart.
+- Stufen je mit Solltemperatur, getrennter Toleranz +/- in °C, Haltezeit in min.
+  Automatische Bewertung der längsten *durchgehend* innerhalb des Bandes
+  liegenden Zeitphase ab Ende der vorherigen aktiven Stufe.
+- Ergebnisse: i.O./n.i.O., Beginn, Ende, min/max, Haltezeit, Messdauer.
+- WB-Report kombiniert Lösungsglühen und Warmauslagerung in einer
+  druckbaren Ansicht (Teilen / Drucken / Als PDF sichern).
+- Aktive WB-Haltezeit kann mit einem Klick an den Countdown-Timer
+  übertragen werden.
+- CSV-Auswertung, speicherbare Programmvorlagen, Backup inkl. Messdaten.
+
+TESTDATEN
+- Im Unterordner 'beispiele' liegen synthetische Beispielkurven
+  mit 'Zeit_s;CH1_Ofen;CH2_Bauteil'. Bei Zeitspalte 'Sekunden' wählen.
+- Alternativ in der WebApp den Knopf 'Beispielkurve laden' verwenden.
+- Beispielkurven und voreingestellte Zieltemperaturen sind ausschließlich
+  demonstrationshalber erstellt, NICHT als Fertigungsrezept zu verwenden.
+
+EINSCHRÄNKUNGEN / DATENSCHUTZ
+- Das frühere Python-/Windows-Prüfdaten-Lite-Programm ist technisch nicht
+  unverändert unter iOS ausführbar. V2.0 bildet bewusst dessen mobile
+  WB-Kernfunktionen nach; Excel-/PDF-Import, Zugversuche, Audit-/Freigabe-
+  Workflows und vollständige Windows-Berichte sind NICHT enthalten.
+- Messungen werden pro Projekt lokal in IndexedDB, Einstellungen in
+  localStorage abgelegt, sofern iOS dies erlaubt. Downloads, Bedienung über
+  die Dateien-App und lokaler Speicher hängen von Safari/iOS ab.
+- Messdaten-Speicherung kann in privaten Browser-Tabs / Dateivorschauen
+  eingeschränkt sein. Für wichtige Projekte regelmäßig JSON-Vollbackup
+  über den Menüpunkt 'Profile' auf dem Gerät sichern.
+- Messdatei maximal 10 MB und 85.000 Zeilen, größere vorher verkleinern.
+  JSON-Importgrenze: 70 MB. Bei großem Backup genug Gerätespeicher vorhalten.
+- Der Countdown verwendet die Uhrzeit und korrigiert nach App-Wechseln;
+  Alarmton bei gesperrtem iPhone oder geschlossener App ist NICHT garantiert.
+  Timer und WB-Auswertung nicht für die sicherheitskritische Prozessregelung
+  oder Qualitätsfreigabe ohne zusätzliche Prüfung verwenden.
+- LPBF-Bauzeit und Kosten sind Näherungen; nicht identisch mit Slicer-Prognose.
+- Standardmaterialdichten und Laserwerte sind Rechenbeispiele, keine
+  freigegebenen Prozessparametersätze.
+
+ALT-DATEN
+- Die bisherigen V1.0-Laser-/Bauzeit-/Kostenprofile bleiben bei Nutzung
+  derselben Domain/Installation erhalten, sofern Browserdaten nicht gelöscht
+  wurden. V1.0-JSON-Backups lassen sich weiterhin importieren.
+- Eine Installation auf neuer Domain/anderem Browser teilt den lokalen
+  Speicher NICHT automatisch. Datentransfer über JSON-Backup.
